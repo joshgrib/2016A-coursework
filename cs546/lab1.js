@@ -1,3 +1,10 @@
+/*
+Josh Gribbon
+CS546
+Lab 1
+5/25/16
+I pledge my honor I have abided by the Stevens Honor System
+*/
 "use strict";
 var myGlobals = {testing: true};
 
@@ -7,11 +14,12 @@ function sumOfSquares(num1, num2, num3) {
     Function to return the sum of squares of three numbers
     Return the result
     */
-    var input = [num1, num2, num3];
-    var i;
-    for (i = 0; i < 3; i += 1) {
+    var
+        input = [num1, num2, num3],
+        i;
+    for ( i in input ) {
         if (isNaN(input[i])) {
-            throw `Input Error: Argument ${i + 1} - ${input[i]} is not a number (NaN).`;
+            throw `Input Error: Argument ${Number(i) + 1} - ${input[i]} is not a number (NaN).`;
         }
     }
     return (Math.pow(num1, 2) + Math.pow(num2, 2) + Math.pow(num3, 2));
@@ -126,8 +134,9 @@ function cupsOfCoffee(howManyCups) {
         return;
     }
     console.log(`${howManyCups.toString()} cups of coffee on the desk! ${howManyCups.toString()} cups of coffee!`);
-    var remaining = howManyCups - 1;
-    var plurality = '';
+    var
+        remaining = howManyCups - 1,
+        plurality = '';
     if (remaining > 1) {
         plurality = 's';
     }
@@ -159,8 +168,10 @@ function occurrencesOfSubstring(fullString, substring) {
     if (typeof substring !== 'string') {
         throw "Input Error: Second argument must be a string.";
     }
-    var count = 0;
-    var i, thisSubStr;
+    var
+        count = 0,
+        i,
+        thisSubStr;
     for (i = 0; i < (fullString.length - substring.length); i += 1) {
         thisSubStr = fullString.substring(i, i + substring.length);
         if (thisSubStr === substring) {
@@ -201,10 +212,15 @@ function randomizeSentences(paragraph) {
     if (typeof paragraph !== 'string') {
         throw "Input Error: Paragraph must be a string.";
     }
-    var lastMarker = 0;
-    var sentences = [];
-    var delims = ['.', '?', '!'];
-    var i, char, sentence;
+    var
+        sentences = [],
+        delims = ['.', '?', '!'],
+        lastMarker = 0,
+        i,
+        char,
+        sentence,
+        resp = '',
+        randIndex;
     for (i = 0; i < paragraph.length; i += 1) {//make array of sentences
         char = paragraph.charAt(i);
         if (delims.indexOf(char) > -1) {//char is one of delims
@@ -214,8 +230,6 @@ function randomizeSentences(paragraph) {
             lastMarker = i + 1;
         }
     }
-    var resp = '';
-    var randIndex;
     while (sentences.length !== 0) {
         randIndex = Math.floor(Math.random() * (sentences.length - 0));
         resp += sentences.splice(randIndex, 1) + ' ';//remove index and add to response
