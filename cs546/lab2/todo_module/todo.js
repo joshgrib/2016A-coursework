@@ -7,10 +7,10 @@ module.exports = {
          * Create a new task with the given title and description
         */
         if (typeof title != 'string'){
-            throw "Title must be a string";
+            throw `Input Error: Title must be a non-null string\n    Received: ${title}`;
         }
         if (typeof description != 'string'){
-            throw "Description must be a string";
+            throw `Input Error: Description must be a non-null string\n    Received: ${description}`;
         }
         resp = {
             id: uuid.v4(),//v4 is random, v1 is time based
@@ -29,7 +29,7 @@ module.exports = {
         if (task.id == undefined ||
             task.title == undefined ||
             task.description == undefined){
-            throw "Input is not a valid task";
+            throw `Input Error: Input is not a valid task\n    Received: ${JSON.stringify(task)}`;
         }
         task.completed = true;
         task.timeCompleted = Date.now();

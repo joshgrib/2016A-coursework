@@ -3,10 +3,10 @@ module.exports = {
 
     set: (id, data) => {
         if( id == undefined || id == null){
-            throw "A non-null id is required";
+            throw `Input Error: A non-null id is required\n    Received:${id}`;
         }
         if( data == undefined){
-            throw "Some non-null data is required";
+            throw `Input Error: Some non-null data is required\n    Received:${data}`;
         }
         storage[id] = data;//store data
         resp = {}
@@ -16,20 +16,20 @@ module.exports = {
 
     unset: (id) => {
         if(id == undefined || id == null){
-            throw "An id is required";
+            throw `Input Error: An id is required\n    Received:${id}`;
         }
         if(storage[id] == undefined){
-            throw `id:'${id}' not present in storage`;
+            throw `Value Error: id:'${id}' not present in storage`;
         }
         delete storage[id];
     },
 
     get: (id) => {
         if( id == undefined || id == null){
-            throw "An id is required";
+            throw `Input Error: An id is required\n    Received:${id}`;
         }
         if(storage[id] == undefined){
-            throw `id:'${id}' not present in storage`;
+            throw `Value Error: id:'${id}' not present in storage`;
         }
         return storage[id];
     }
