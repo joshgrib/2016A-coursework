@@ -1,0 +1,12 @@
+{
+  "name": "storage_module",
+  "version": "1.0.0",
+  "description": "A simple module for storing and modifying data based on an id",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josh Gribbon",
+  "license": "MIT"
+}

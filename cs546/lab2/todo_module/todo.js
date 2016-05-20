@@ -15,7 +15,7 @@ module.exports = {
         resp = {
             id: uuid.v4(),//v4 is random, v1 is time based
             title: title,
-            desciption: description,
+            description: description,
             completed: false,
             timeCompleted: null
         }
@@ -26,6 +26,11 @@ module.exports = {
         /*
          * Set the task to be completed at the current time
         */
+        if (task.id == undefined ||
+            task.title == undefined ||
+            task.description == undefined){
+            throw "Input is not a valid task";
+        }
         task.completed = true;
         task.timeCompleted = Date.now();
         //no need to return task, it just updates the original
