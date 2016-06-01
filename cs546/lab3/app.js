@@ -1,3 +1,5 @@
+'use strict'
+
 const fileData = require('./fileData.js');
 const textMetrics = require('./textMetrics.js');
 var myGlobals = {testing: true};
@@ -24,8 +26,8 @@ setTimeout(function(){console.log(text4)}, 2000);
 
 console.log("=====TESTING textMetrics=====");
 
-//res = textMetrics.createMetrics("Hello, my friends! This is a great day to say hello.");
-//console.log(res);
+var res = textMetrics.createMetrics("Hello, my friends! This is a great day to say hello.");
+console.log(res);
 /*
 {
     totalLetters: 39,
@@ -50,6 +52,14 @@ console.log("=====TESTING textMetrics=====");
 }
 */
 
-console.log(
-    textMetrics.createMetrics(
-        fileData.getFileAsString('./chapter1.txt')));
+//printMetricsForFile('chapter1.txt');
+
+function printMetricsForFile(filename){
+    var chap_string = fileData.getFileAsString('./chapter1.txt');
+    chap_string.then(function(resp){
+        let stats = textMetrics.createMetrics(resp);
+        console.log(stats);
+    }, function(error) {
+        throw error;
+    });
+}

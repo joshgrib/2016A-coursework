@@ -1,3 +1,4 @@
+'use strict'
 /*
 This module will export one method, createMetrics(text)which will scan through the text ignoring case and return an object with the following information:
 {
@@ -23,14 +24,17 @@ function round_nums(fp_num){
 
 module.exports = {
     createMetrics: (text) => {
-        var resp = {}
-        var words = text.split(' ');
-        var word_count = 0;
-        var unique_words = {};
-        var total_letters = 0;
-        var long_word_count = 0;
-        for(i in words){
-            word = words[i].replace(/[\\.!?,]/, '').toLowerCase();
+        let resp = {}
+        resp.numberOfSentences = text.split(/[\\.!?]/).length-1;//-1 to cut the '' off the end
+        let word_count = 0;
+        let unique_words = {};
+        let total_letters = 0;
+        let long_word_count = 0;
+        text = text + '';//makes text a string
+        text = text.replace(/\W/g, ' ');
+        let words = text.split(' ');
+        for(let i in words){
+            let word = words[i].replace(/[\\.!?,':;"]/, '').toLowerCase();
             if(word.length===0)continue;
             total_letters += word.length;
             if(unique_words[word] === undefined){//if not seen yet
@@ -41,18 +45,17 @@ module.exports = {
             word_count += 1;
             if(word.length >= 6){long_word_count += 1;}
         }
-        unique_word_count = 0;
-        for(key in unique_words){
+        let unique_word_count = 0;
+        for(let key in unique_words){
             unique_word_count++;
         }
         resp.totalLetters = total_letters;
         resp.totalWords = word_count;
         resp.uniqueWords = unique_word_count;
         resp.longWords = long_word_count;
-        var averageWordLength = resp.totalLetters / resp.totalWords;
+        let averageWordLength = resp.totalLetters / resp.totalWords;
         resp.averageWordLength = round_nums(averageWordLength);
-        resp.numberOfSentences = text.split(/[\\.!?]/).length-1;//-1 to cut the '' off the end
-        var textComplexity = resp.totalWords/resp.numberOfSentences + (resp.longWords *100)/resp.totalWords;
+        let textComplexity = resp.totalWords/resp.numberOfSentences + (resp.longWords *100)/resp.totalWords;
         resp.textComplexity = round_nums(textComplexity);
         resp.wordOccurrences = unique_words;
 

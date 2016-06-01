@@ -1,4 +1,5 @@
-fs = require('fs')
+'use strict'
+var fs = require('fs')
 
 var getFileAsString = (path) => {
     /**
