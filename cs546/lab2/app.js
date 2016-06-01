@@ -1,6 +1,7 @@
 const todo = require('./todo.js');
+var myGlobals = {testing: true};
 
-
+if(myGlobals.testing){
 console.log("-----TESTING createTask()-----");
 let testTask = todo.createTask('Todo test', 'A test task for the createTask method');
 console.log("New task:");
@@ -92,4 +93,5 @@ try{
     storage.get("key");
 } catch(e) {
     console.log(e);
+}
 }
