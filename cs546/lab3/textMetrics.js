@@ -24,6 +24,10 @@ function round_nums(fp_num){
 
 module.exports = {
     createMetrics: (text) => {
+        /*
+         * Takes in a string of text and returns an object with various
+         * statistics about the text
+        */
         let resp = {}
         resp.numberOfSentences = text.split(/[\\.!?]/).length-1;//-1 to cut the '' off the end
         let word_count = 0;
@@ -31,9 +35,10 @@ module.exports = {
         let total_letters = 0;
         let long_word_count = 0;
         text = text + '';//makes text a string
-        text = text.replace(/\W/g, ' ');
+        text = text.replace(/\W/g, ' ');//remove non-alphanumeric chars
         let words = text.split(' ');
         for(let i in words){
+            //the replace below might not be needed anymore
             let word = words[i].replace(/[\\.!?,':;"]/, '').toLowerCase();
             if(word.length===0)continue;
             total_letters += word.length;
