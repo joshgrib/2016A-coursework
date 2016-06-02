@@ -7,6 +7,11 @@ var getFileAsString = (path) => {
     If no path is provided, it will return a rejected promise.
     If there are any errors reading the file, the returned promise will reject rather than resolve, passing the error to the rejection callback.
     */
+    if(path === null || path === undefined){
+        return new Promise(
+            function(fulfill, reject){reject('No path provided')}
+            )
+    }
     return new Promise( function(fulfill, reject){
         fs.readFile(path, 'utf-8', function(err, res){
             if (err) reject(err);
@@ -21,6 +26,11 @@ var getFileAsJSON = (path) => {
     If there are any errors reading the file or parsing the file, the returned promise will reject rather than resolve, passing the error to the rejection callback.
     Hint: this function can be accomplished in approximately 3-4 lines. Don't overcomplicate it!
     */
+    if(path === null || path === undefined){
+        return new Promise(
+            function(fulfill, reject){reject('No path provided')}
+            )
+    }
     return new Promise( function(fulfill, reject){
         fs.readFile(path, 'utf-8', function(err, res){
             if (err) reject(err);
@@ -34,6 +44,16 @@ var saveStringToFile = (path, text) => {
     If no path or text is provided, it will return a rejected promise.
     If there are any errors writing the file, the returned promise will reject rather than resolve, passing the error to the rejection callback.
     */
+    if(path === null || path === undefined){
+        return new Promise(
+            function(fulfill, reject){reject('No path provided')}
+            )
+    }
+    if(typeof text != 'string'){
+        return new Promise(
+            function(fulfill, reject){reject(`Text must be of type string. Received:${typeof text}`)}
+            )
+    }
     return new Promise( function(fulfill, reject){
         fs.writeFile(path, text, function(err){
             if(err) reject(err);
@@ -47,7 +67,12 @@ var saveJSONToFile = (path, obj) => {
     If no path or obj is provided, it will return a rejected promise.
     If there are any errors writing the file, the returned promise will reject rather than resolve, passing the error to the rejection callback.
     */
-    str_obj = JSON.stringify(obj);
+    if(typeof obj != 'object'){
+        return new Promise(
+            function(fulfill, reject){reject(`Object must be of type object. Received:${typeof obj}`)}
+            )
+    }
+    let str_obj = JSON.stringify(obj);
     return saveStringToFile(path, str_obj);
 }
 
