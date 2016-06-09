@@ -2,6 +2,39 @@
 
 const fileData = require('./fileData.js');
 const textMetrics = require('./textMetrics.js');
+
+let ch1 = fileData.getFileAsString('./chapter1.txt');
+ch1.then(
+    function(ch1){
+        console.log(ch1);
+        return fileData.getFileAsString('./chapter2.txt');
+    },
+    function(err){throw err;}
+).then(
+    function(ch2){
+        console.log(ch2);
+        return fileData.getFileAsString('./chapter3.txt');
+    },
+    function(err){throw err;}
+).then(
+    function(ch3){
+        console.log(ch3);
+    },
+    function(err){throw err;}
+);
+/*
+ch2.then(
+    function(resp){console.log(ch2);},
+    function(err){throw err;}
+    );
+ch3.then(
+    function(resp){console.log(ch3);},
+    function(err){throw err;}
+    );
+*/
+//console.log(`${ch1}\n${ch2}\n{ch3}`);
+
+/*
 var myGlobals = {testing: true};
 
 
@@ -18,12 +51,12 @@ console.log("=====TESTING fileData.js=====");
 
 let text1 = fileData.getFileAsString('./chapter1.txt');
 text1.then(
-    function(resp){/*console.log(text1);*/},
+    function(resp){console.log(text1);},
     function(err){throw err;});
 
 let text5 = fileData.getFileAsString();
 text5.then(
-    function(resp){console.log(text5);},
+    function(resp){console.log('fileData.getFileAsString():' +text5);},
     function(err){throw err;});
 console.log(text5);
 
@@ -89,3 +122,4 @@ function printPromise(prom, label){
         throw error;
     });
 }
+*/

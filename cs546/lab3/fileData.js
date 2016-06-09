@@ -76,10 +76,11 @@ var saveJSONToFile = (path, obj) => {
     return saveStringToFile(path, str_obj);
 }
 
-
+//Splitting it up like this let me use saveStringToFile in saveJSONToFile
 module.exports = {
     getFileAsString : getFileAsString,
     getFileAsJSON : getFileAsJSON,
     saveStringToFile : saveStringToFile,
     saveJSONToFile : saveJSONToFile
 }
+
