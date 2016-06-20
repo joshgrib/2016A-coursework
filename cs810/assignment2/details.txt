@@ -1,0 +1,9 @@
+Chip (HDL)     Description              Test script Compare file
+HalfAdder      Half Adder               HalfAdder.tst   HalfAdder.cmp
+FullAdder      Full Adder               FullAdder.tst   FullAdder.cmp
+Add16          16-bit Adder             Add16.tst       Add16.cmp
+Inc16          16-bit incrementer       Inc16.tst       Inc16.cmp
+ALU Arithmetic Logic Unit (partial)     ALU-nostat.tst  ALU-nostat.cmp
+ALU Arithmetic Logic Unit (complete)    ALU.tst         ALU.cmp
+
+List of files and stuff in suggested order

@@ -1,0 +1,24 @@
+{
+  "name": "lab4",
+  "version": "1.0.0",
+  "description": "Lab 4 - CS546 - rewriting lab 2 to use a database and promises",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshgrib/2016A-coursework.git"
+  },
+  "author": "Josh Gribbon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshgrib/2016A-coursework/issues"
+  },
+  "homepage": "https://github.com/joshgrib/2016A-coursework#readme",
+  "dependencies": {
+    "mongodb": "^2.1.18",
+    "node-uuid": "^1.4.7"
+  }
+}
