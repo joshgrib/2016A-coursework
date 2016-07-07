@@ -1,0 +1,66 @@
+{
+    "_id":"096537ac-de0d-45a5-b4f9-7a3da64381bc",
+    "name":"Web Programming",
+    "dept":"CS",
+    "num":"546",
+    "call":"10100",
+    "min-credits":"3",
+    "max-credits":"3",
+    "max_enrollment":"30",
+    "curr_enrollment":"21",
+    "status":"O",
+    "start_date":"2016-05-11Z",
+    "end_date":"2016-08-29Z",
+    "instructor":"Barresi P",
+    "term":"2016A",
+    "meetings": [
+        {"day":"TBA", "start":null, "end":null, "site":"WS", "building":"OFF", "room":"WEB", "activity":"LEC"}
+    ],
+    "requirements": [
+        {"control":"RQ", "argument":"", "value1":"CS 442", "operator":"", "value2":"CS561"},
+        {"control":"R&", "argument":"", "value1":"CS 146", "operator":"", "value2":"SOC 611"}
+    ]
+}
+
+<Course Section="CS 546WS" Title="Web Programming" CallNumber="10100" MinCredit="3" MaxCredit="3" MaxEnrollment="30" CurrentEnrollment="21" Status="O" StartDate="2016-05-11Z" EndDate="2016-08-29Z" Instructor1="Barresi P" Term="2016A">
+    <Meeting Day="TBA" Site="WS" Building="OFF" Room="WEB" Activity="LEC"/>
+    <Requirement Control="RQ" Argument="" Value1="CS 442" Operator="" Value2="CS 561"/>
+    <Requirement Control="R&" Argument="" Value1="CS 146" Operator="" Value2="SOC 611"/>
+</Course>
+
+notes
+    max credits is take as credits
+    call number could be used as uuid but no reason not to use a real one
+    left out:
+        minimum credits
+        start/end date
+
+
+<Course Section="CS 385A" Title="Algorithms" CallNumber="10516" MinCredit="4" MaxCredit="4" MaxEnrollment="50" CurrentEnrollment="25" Status="O" StartDate="2016-01-19Z" EndDate="2016-05-17Z" Instructor1="Borowski B" Term="2016S">
+    <Meeting Day="MTR" StartTime="11:00:00Z" EndTime="11:50:00Z" Site="Castle Point" Building="X" Room="119" Activity="LEC"/>
+    <Requirement Control="RQ" Argument="" Value1="CS 284" Operator="" Value2="CS 181"/>
+    <Requirement Control="CA" Argument="" Value1="RCT" Operator="" Value2=""/>
+</Course>
+
+<Course Section="CS 488A" Title="Computer Architecture" CallNumber="10521" MinCredit="3" MaxCredit="3" MaxEnrollment="60" CurrentEnrollment="16" Status="O" StartDate="2016-01-19Z" EndDate="2016-05-17Z" Instructor1="Peyrovian R" Term="2016S">
+    <Meeting Day="M" StartTime="10:00:00Z" EndTime="10:50:00Z" Site="Castle Point" Building="BC" Room="219" Activity="LEC"/>
+    <Meeting Day="R" StartTime="10:00:00Z" EndTime="11:40:00Z" Site="Castle Point" Building="BC" Room="219" Activity="LEC"/>
+    <Requirement Control="RQ" Argument="" Value1="CS 383" Operator="" Value2=""/>
+    <Requirement Control="N&" Argument="" Value1="MA 222" Operator="" Value2="E 243"/>
+</Course>
+
+
+| day | string |  |
+| start_time | string |  |
+| end_time | string |  |
+| site | string |  |
+| building | string |  |
+| room | string |  |
+| activity | string |  |
+
+
+control="RQ"
+argument=""
+value1="CS 442"
+operator=""
+value2="CS 561"/>

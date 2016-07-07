@@ -12,7 +12,6 @@ router.get("/recipe/:recipeId", (req, res) => {
             //console.log(comment);
             comment_list.push({'_id':comment._id, 'recipeId':recipe._id, 'recipeTitle':recipe.title, 'comment':comment.comment, 'poster':comment.poster});
         });
-        console.log(comment_list);
         return comment_list
     }).then( (c_list) => {
         res.json(c_list);
