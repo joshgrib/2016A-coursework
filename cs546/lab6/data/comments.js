@@ -47,31 +47,44 @@ let exportedMethods = {
     removeComment(id){
         return recipes().then( (recipeCollection) => {
             return this.getCommentById(id).then( (comment_info) => {
-                return this.remove_comment_helper(id, comment_info.recipeId).then( (new_recipe) => {
+                let recipe = recipeData.getRecipeById(comment_info.recipeId);
+                return recipe.then( (recipe_info) => {
+                    let new_arr = []
+                    recipe_info.comments.forEach( (comment) => {
+                        if(comment._id === id){
+                            let i = recipe_info.comments.indexOf(comment);
+                            if(i > -1){recipe_info.comments.splice(i, 1)};
+                        }
+                    });
+                    return recipe;
+                }).then( (new_recipe) => {
                     recipeData.updateRecipe(new_recipe._id, new_recipe);
                 });
             });
         });
     },
-    remove_comment_helper(comment_id, recipe_id){
-        /*
-        Takes in the IDs for the comment and recipe
-        Returns the recipe without the comment
-        */
-        let recipe = recipeData.getRecipeById(recipe_id);
-        return recipe.then( (recipe_info) => {
-            let new_arr = []
-            recipe_info.comments.forEach( (comment) => {
-                if(comment._id === comment_id){
-                    let i = recipe_info.comments.indexOf(comment);
-                    if(i > -1){recipe_info.comments.splice(i, 1)};
-                }
-            });
-            return recipe;
-        });
-    },
     updateComment(id, updatedComment){
-        console.log('Not done yet...');
+        return this.getCommentById(id).then( (info) => {
+            return recipeData.getRecipeById(info.recipeId).then((recipe)=>{
+                recipe.comments.forEach( (comment) => {
+                    if(comment._id === id){
+                        console.log(updatedComment);
+                        if(updatedComment.comment){
+                            comment.comment = updatedComment.comment;
+                        }
+                        if(updatedComment.poster){
+                            comment.poster = updatedComment.poster;
+                        }
+                    }
+                });
+                return recipe;
+            }).then( (updated_recipe) => {
+                console.log(updated_recipe);
+                return recipeData.updateRecipe(updated_recipe._id, updated_recipe);
+            }).then( (new_recipe) => {
+                return this.getCommentById(id);
+            });
+        });
     }
 }
 

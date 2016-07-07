@@ -43,39 +43,44 @@ let toast = {
   "comments": []
 }
 
-dbConnection().then(db => {
-    console.log('Beginning to seed database!');//debugging
-    return db.dropDatabase().then(() => {
-        console.log('Setting up a new db connection');//debugging
-        return dbConnection;
-    }).then((/*db*/) => {
-        console.log('Adding egg recipe');//debugging
-        return recipes.addRecipe(eggs.title, eggs.ingredients, eggs.steps);
-    }).then((eggs) => {
-        const recipe_id = eggs._id;
+let comment1 = {
+  "comment": "Hey this is a good recipe",
+  "poster" : "Josh"
+}
+let comment2 = {
+  "comment": "I tried this and it worked well",
+  "poster" : "Josh"
+}
+let comment3 = {
+  "comment": "This failed horribly for me...",
+  "poster" : "Josh"
+}
 
-        console.log('Adding comments to egg recipe');//debugging
-        return comments.addComment("Comment 1", "Poster 1", recipe_id).then((/*egg_comment_1*/) => {
-            return comments.addComment("Comment 2", "Poster  ", recipe_id);
-        }).then((/*egg_comment_2*/) => {
-            return comments.addComment("Comment 3", "Poster 3", recipe_id);
+let recipe_arr = [eggs, toast];
+let comment_arr = [comment3, comment2, comment1];
+dbConnection().then( (db) => {
+    return db.dropDatabase().then( ()=> {
+        recipe_arr.forEach( (recipe) => {
+            //console.log(`Adding recipe for '${recipe.title}'`);
+            console.log(`Adding ${recipe.title}`);
+            recipes.addRecipe(recipe.title, recipe.ingredients, recipe.steps)
+            .then( (added_recipe) => {
+                //the following is not pretty but this it wasn't working when chained in line
+                console.log(`Adding comment to ${added_recipe.title}`);
+                comments.addComment(comment1.comment, comment1.poster, added_recipe._id)
+                .then( () => {
+                    console.log(`Adding comment to ${added_recipe.title}`);
+                    comments.addComment(comment2.comment, comment2.poster, added_recipe._id)
+                    .then( () => {
+                        console.log(`Adding comment to ${added_recipe.title}`);
+                        comments.addComment(comment3.comment, comment3.poster, added_recipe._id);
+                    });
+                });
+            });
         });
-    }).then((/*egg_comment_3*/) => {
-        console.log("Adding toast recipe");
-        return recipes.addRecipe(toast.title, toast.ingredients, toast.steps);
-    }).then((toast) => {
-        const recipe_id = toast._id;
-
-        console.log("Adding comment to toast recipe");
-        return comments.addComment("Comment 1", "Poster 1", recipe_id).then((/*toast_comment_1*/) => {
-            return comments.addComment("Comment 2", "Poster  ", recipe_id);
-        }).then((/*toast_comment_2*/) => {
-            return comments.addComment("Comment 3", "Poster 3", recipe_id);
-        });
-    }).then((/*toast_comment_3*/) => {
-        console.log("Done seeding database");
-        db.close();
-    });
+    })/*.then( () => {
+    db.close();
+    })*/;
 }, (error) => {
     console.error(error);
 });

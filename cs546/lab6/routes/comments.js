@@ -5,20 +5,24 @@ const recipeData = data.recipes;
 const commentData = data.comments;
 
 router.get("/recipe/:recipeId", (req, res) => {
-    //Returns a list of all comments in the specified recipe, in the format of: {_id: COMMENT_ID, recipeId: RECIPE_ID, reciipeTitle: RECIPE_TITLE, name: COMMENT_NAME, poster: COMMENT_POSTER}
-    return recipeData.getRecipeById(req.params.recipeId).then( (recipe) => {
+    //Returns a list of all comments in the specified recipe, in the format of: {_id: COMMENT_ID, recipeId: RECIPE_ID, reciipeTitle: RECIPE_TITLE, comment: COMMENT_TEXT, poster: COMMENT_POSTER}
+    recipeData.getRecipeById(req.params.recipeId).then( (recipe) => {
         let comment_list = [];
         recipe.comments.forEach( (comment) => {
-            comment_list.push({'_id':comment._id, 'recipeId':recipe._id, 'recipeTitle':recipe.title, 'name':comment.comment, 'poster':comment.poster});
+            //console.log(comment);
+            comment_list.push({'_id':comment._id, 'recipeId':recipe._id, 'recipeTitle':recipe.title, 'comment':comment.comment, 'poster':comment.poster});
         });
-        res.json(comment_list);
+        console.log(comment_list);
+        return comment_list
+    }).then( (c_list) => {
+        res.json(c_list);
     }).catch((e) => {
         res.status(500).json({error: e });
     });
 });
 
 router.get("/:commentId", (req, res) => {
-    //Returns the comment specified by that commentId in the format of {_id: COMMENT_ID, recipeId: RECIPE_ID, reciipeTitle: RECIPE_TITLE, name: COMMENT_NAME, poster: COMMENT_POSTER}
+    //Returns the comment specified by that commentId in the format of {_id: COMMENT_ID, recipeId: RECIPE_ID, reciipeTitle: RECIPE_TITLE, comment: COMMENT_TEXT, poster: COMMENT_POSTER}
     commentData.getCommentById(req.params.commentId).then( (comment) => {
         res.json(comment);
     }).catch( () => {
@@ -38,10 +42,22 @@ router.post("/:recipeId/", (req, res) => {
     });
 });
 
+//Pretty sure I don't actually need recipeId here...
 router.put("/:recipeId/:commentId", (req, res) => {
     //Updates the specified comment for the stated recipe with only the supplied changes, and returns the updated comment
-    console.log('Not implemented yet...');
-    res.status(500).json({'error':'Route not implemented yet'});
+    let updatedData = req.body;
+
+    commentData.getCommentById(req.params.commentId).then( (comment_data) => {
+        return commentData.updateComment(req.params.commentId, updatedData).then( (updatedComment) => {
+            res.json(updatedComment);
+        }).catch( (e) => {
+            console.log(e);
+            res.status(500).json({error: e});
+        });
+    }).catch( (e) => {
+        console.log(e);
+        res.status(404).json({ error: "Comment not found" });
+    });
 });
 
 router.delete("/:id", (req, res) => {
@@ -59,37 +75,3 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
-
-
-/*
-router.put("/:id", (req, res) => {
-    let updatedData = req.body;
-
-    let getPost = postData.getPostById(req.params.id);
-
-    getPost.then(() => {
-        return postData.updatePost(req.params.id, updatedData)
-            .then((updatedPost) => {
-                res.json(updatedPost);
-            }).catch((e) => {
-                res.status(500).json({ error: e });
-            });
-    }).catch(() => {
-        res.status(404).json({ error: "Post not found" });
-    });
-});
-router.delete("/:id", (req, res) => {
-    let getPost = postData.getPostById(req.params.id);
-
-    getPost.then(() => {
-        return postData.removePost(req.params.id)
-            .then(() => {
-                res.sendStatus(200);
-            }).catch((e) => {
-                res.status(500).json({ error: e });
-            });
-    }).catch(() => {
-        res.status(404).json({ error: "Post not found" });
-    });
-});
-*/
