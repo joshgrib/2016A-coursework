@@ -59,6 +59,10 @@ let exportedMethods = {
                 updatedRecipeData.steps = updatedRecipe.steps;
             }
 
+            if (updatedRecipe.comments) {
+                updatedRecipeData.comments = updatedRecipe.comments;
+            }
+
             let updateCommand = {
                 $set: updatedRecipeData
             };

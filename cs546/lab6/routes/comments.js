@@ -6,20 +6,36 @@ const commentData = data.comments;
 
 router.get("/recipe/:recipeId", (req, res) => {
     //Returns a list of all comments in the specified recipe, in the format of: {_id: COMMENT_ID, recipeId: RECIPE_ID, reciipeTitle: RECIPE_TITLE, name: COMMENT_NAME, poster: COMMENT_POSTER}
-    console.log('Not implemented yet...');
-    res.status(500).json({'error':'Route not implemented yet'});
+    return recipeData.getRecipeById(req.params.recipeId).then( (recipe) => {
+        let comment_list = [];
+        recipe.comments.forEach( (comment) => {
+            comment_list.push({'_id':comment._id, 'recipeId':recipe._id, 'recipeTitle':recipe.title, 'name':comment.comment, 'poster':comment.poster});
+        });
+        res.json(comment_list);
+    }).catch((e) => {
+        res.status(500).json({error: e });
+    });
 });
 
 router.get("/:commentId", (req, res) => {
     //Returns the comment specified by that commentId in the format of {_id: COMMENT_ID, recipeId: RECIPE_ID, reciipeTitle: RECIPE_TITLE, name: COMMENT_NAME, poster: COMMENT_POSTER}
-    console.log('Not implemented yet...');
-    res.status(500).json({'error':'Route not implemented yet'});
+    commentData.getCommentById(req.params.commentId).then( (comment) => {
+        res.json(comment);
+    }).catch( () => {
+        res.status(404).json({error: 'Comment not found'});
+    });
 });
 
 router.post("/:recipeId/", (req, res) => {
     //Creates a new comment with the supplied data in the request body for the stated recipe, and returns the new comment
-    console.log('Not implemented yet...');
-    res.status(500).json({'error':'Route not implemented yet'});
+    let newCommentData = req.body;
+
+    commentData.addComment(newCommentData.comment, newCommentData.poster, req.params.recipeId).then( (newComment) => {
+        //res.json({status:"Done"});
+        res.json(newComment);
+    }).catch( (e) => {
+        res.status(500).json({error: e});
+    });
 });
 
 router.put("/:recipeId/:commentId", (req, res) => {
@@ -28,44 +44,24 @@ router.put("/:recipeId/:commentId", (req, res) => {
     res.status(500).json({'error':'Route not implemented yet'});
 });
 
-router.delete(" /:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     //Deletes the comment specified
-    console.log('Not implemented yet...');
-    res.status(500).json({'error':'Route not implemented yet'});
+    let getComment = commentData.getCommentById(req.params.id);
+    getComment.then( (comment) => {
+        return commentData.removeComment(req.params.id).then( (result) => {
+            res.send(result); //res.sendStatus(200);
+        }).catch( (e) => {
+            res.status(500).json({error: e});
+        });
+    }).catch( (e) => {
+        res.status(404).json({error: "Comment not found"});
+    });
 });
 
 module.exports = router;
 
 
-router.get("/:id", (req, res) => {
-    postData.getPostById(req.params.id).then((post) => {
-        res.json(post);
-    }).catch(() => {
-        res.status(404).json({ error: "Post not found" });
-    });
-});
-router.get("/tag/:tag", (req, res) => {
-    postData.getPostsByTag(req.params.tag).then((postList) => {
-        res.json(postList);
-    });
-});
-router.get("/", (req, res) => {
-    postData.getAllPosts().then((postList) => {
-        res.json(postList);
-    }).catch((e) => {
-        res.status(500).json({ error: e });
-    });
-});
-router.post("/", (req, res) => {
-    let blogPostData = req.body;
-
-    postData.addPost(blogPostData.title, blogPostData.body, blogPostData.tags, blogPostData.posterId)
-        .then((newPost) => {
-            res.json(newPost);
-        }).catch((e) => {
-            res.status(500).json({ error: e });
-        });
-});
+/*
 router.put("/:id", (req, res) => {
     let updatedData = req.body;
 
@@ -96,3 +92,4 @@ router.delete("/:id", (req, res) => {
         res.status(404).json({ error: "Post not found" });
     });
 });
+*/

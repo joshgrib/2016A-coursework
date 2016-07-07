@@ -20,10 +20,8 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     //Responds with the full content of the specified recipe
     recipeData.getRecipeById(req.params.id).then((recipe) => {
-        console.log(`Sending recipe ${req.params.id}.`);
         res.json(recipe);
     }).catch(() => {
-        console.log(`Error: Recipe ${req.params.id} not found`);
         res.status(404).json({ error: "Recipe not found" });
     });
 });
