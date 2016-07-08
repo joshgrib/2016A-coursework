@@ -54,7 +54,6 @@ router.put("/:recipeId/:commentId", (req, res) => {
             res.status(500).json({error: e});
         });
     }).catch( (e) => {
-        console.log(e);
         res.status(404).json({ error: "Comment not found" });
     });
 });

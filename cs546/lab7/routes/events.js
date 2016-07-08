@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 
+let myFunc = (pid_list) => {
+    let resp = [];
+    pid_list.forEach( (pid) => {
+        resp.push(data.people.getPerson(pid));
+        console.log("Got person info");
+    });
+    console.log(resp);
+    return Promise.all(resp);
+}
+
 // Single Event Page
 router.get("/:id", (req, res) => {
     // Find a event by the provided id,
@@ -11,11 +21,22 @@ router.get("/:id", (req, res) => {
     // You will also list the location of the event, said location's name, and a link to the location page
 
     // If a event is not found, display the 404 error page
-    console.log(req.params.id);
     data.events.getEvent(req.params.id).then( (event_info) => {
+        return data.locations.getLocation(event_info.location).then( (loc_data) => {
+            //switch location id for info
+            event_info.location = loc_data;
+            return event_info;
+        }).then( (event_info) => {
+            return myFunc(event_info.attendees).then( (people_info) => {
+                //switch people ids for info
+                event_info.attendees = people_info;
+                return event_info;
+            });
+        });
+    }).then( (event_info) => {
         res.json(event_info);
     }).catch((e) => {
-        res.status(500).json({error: e });
+        res.status(404).json({error: e });
     });
     //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
@@ -27,9 +48,8 @@ router.get("/", (req, res) => {
     data.events.getAllEvents().then( (event_list) => {
         res.json(event_list);
     }).catch( (e) => {
-        res.status(500).json({error : e});
+        res.status(404).json({error : e});
     });
-    //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
 
 module.exports = router;

@@ -12,9 +12,8 @@ router.get("/:id", (req, res) => {
     data.locations.getLocation(req.params.id).then( (location_info) => {
         res.json(location_info);
     }).catch((e) => {
-        res.status(500).json({error: e });
+        res.status(404).json({error: e });
     });
-    //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
 
 // Location Index Page
@@ -24,9 +23,8 @@ router.get("/", (req, res) => {
     data.locations.getAllLocations().then( (location_list) => {
         res.json(location_list);
     }).catch( (e) => {
-        res.status(500).json({error : e});
+        res.status(404).json({error : e});
     });
-    //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
 
 module.exports = router;

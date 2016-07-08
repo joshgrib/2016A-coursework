@@ -12,9 +12,8 @@ router.get("/:id", (req, res) => {
     data.people.getPerson(req.params.id).then( (person_info) => {
         res.json(person_info);
     }).catch((e) => {
-        res.status(500).json({error: e });
+        res.status(404).json({error: e });
     });
-    //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
 
 // People Index Page
@@ -22,12 +21,10 @@ router.get("/", (req, res) => {
     // Display a list of all people; it can be in an unordered list, or a table
     // Each of these people need to link to the single person page
     data.people.getAllPeople().then( (people_list) => {
-        //res.json(people_list);
-        res.render("/layouts/main", {body:people_list});
+        res.json(people_list);
     }).catch( (e) => {
-        res.status(500).json({error : e});
+        res.status(404).json({error : e});
     });
-    //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
 
 module.exports = router;
