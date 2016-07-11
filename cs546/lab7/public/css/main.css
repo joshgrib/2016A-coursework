@@ -52,3 +52,87 @@ p {
     border-bottom: 1px dashed #333;
 }
 
+
+
+
+/*Stuff I added below*/
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    margin: 0;
+}
+
+body {
+    background-color: #666547;
+}
+
+main {
+    background-color:#fb2e01;
+    width: 50vw;
+    min-width: 350px;
+    padding: 25px;
+    height: 100vh;
+    /*box-shadow: 2px 2px 2px black;*/
+}
+
+.item_page {
+    /*box-shadow: 2px 2px 2px black;*/
+    background: #6fcb9f;
+    width: 75%;
+    margin:auto;
+    min-width: 350px;
+    padding: 10px 0;
+}
+
+article>*{
+    width: 300px;
+    margin: auto;
+}
+
+article>header{
+    text-align: center
+}
+
+footer>p {
+    text-align:center;
+}
+
+.item_page>header {
+    font-size: 1.5em;
+}
+
+.details>.description{
+    font-style: italic;
+    line-height:100%;
+}
+
+.list {
+    background: #ffe28a;
+    width: 300px;
+}
+
+header {
+    border-bottom: 0;
+}
+
+.list>header {
+    font-weight: bold;
+    border-bottom: 3px solid #666547;
+}
+
+ul {
+    padding:0;
+    margin:0;
+    list-style-type: none;
+}
+
+li:nth-of-type(even) {
+    background-color:#fffeb3;
+    width:100%;
+}
+
+main, .item_page, .list {
+    box-shadow: 2px 2px 5px black;
+}

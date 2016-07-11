@@ -27,12 +27,12 @@ let locationList = [
 ];
 
 let exportedMethods = {
-    getAllLocations: () => { return Promise.resolve(locationList.slice(0)); },
-    getLocation: (id) => {
+    getAll: () => { return Promise.resolve(locationList.slice(0)); },
+    lookup: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
         let location = locationList.filter(x => x.id == id).shift();
-        if (!location) return Promise.reject("No location found")
+        if (!location) return Promise.reject(`No location found for id:${id}`)
 
         return Promise.resolve(location);
     }

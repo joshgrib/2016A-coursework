@@ -50,8 +50,8 @@ const eventList = [
 ];
 
 let exportedMethods = {
-    getAllEvents: () => { return Promise.resolve(eventList.slice(0)); },
-    getEvent: (id) => {
+    getAll: () => { return Promise.resolve(eventList.slice(0)); },
+    lookup: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
         let event = eventList.filter(x => x.id == id).shift();
@@ -60,10 +60,15 @@ let exportedMethods = {
         return Promise.resolve(event);
     },
     getEventsForAttendee: (attendeeId) => {
-        if (attendeesId === undefined) return Promise.reject("No attendee id provided");
+        if (attendeeId === undefined) return Promise.reject("No attendee id provided");
 
         return Promise.resolve(eventList.filter(x => x.attendees.indexOf(attendeeId) >= 0));
-    }
+    },
+    getEventsForLocation: (locationId) => {
+        if (locationId === undefined) return Promise.reject("No location id provided");
+
+        return Promise.resolve(eventList.filter(x => x.location == locationId));
+    },
 }
 
 module.exports = exportedMethods;

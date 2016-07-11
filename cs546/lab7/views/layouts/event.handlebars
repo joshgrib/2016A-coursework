@@ -1,0 +1,24 @@
+<article id='event' class='item_page'>
+    <header>{{title}}</header>
+    <section class='details'>
+        <p class='description'>{{description}}</p>
+        <p class='start_time'>
+            <time datetime='{{startTime}}'>
+                {{niceDate startTime}}
+            </time>
+        </p>
+    </section>
+    <section class='list'>
+        <header>List of attendees</header>
+        <ul>
+            {{#attendees}}
+                <li id='person_{{id}}'>
+                    <a href='/people/{{id}}'>{{name}}</a>
+                </li>
+            {{/attendees}}
+        </ul>
+    </section>
+    <footer>
+        <p><a href='/locations/{{location.id}}'>{{location.name}}</a> - {{location.location}}</p>
+    </footer>
+</article>

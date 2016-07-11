@@ -26,8 +26,8 @@ const personList = [
 ];
 
 let exportedMethods = {
-    getAllPeople: () => { return Promise.resolve(personList.slice(0)); },
-    getPerson: (id) => {
+    getAll: () => { return Promise.resolve(personList.slice(0)); },
+    lookup: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
         let person = personList.filter(x => x.id == id).shift();
