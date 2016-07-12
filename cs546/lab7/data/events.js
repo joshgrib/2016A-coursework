@@ -50,11 +50,15 @@ const eventList = [
 ];
 
 let exportedMethods = {
-    getAll: () => { return Promise.resolve(eventList.slice(0)); },
+    getAll: () => {
+        let clone = JSON.parse(JSON.stringify(eventList));
+        return Promise.resolve(clone.slice(0));
+    },
     lookup: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
-        let event = eventList.filter(x => x.id == id).shift();
+        let clone = JSON.parse(JSON.stringify(eventList));
+        let event = clone.filter(x => x.id == id).shift();
         if (!event) return Promise.reject("No event found")
 
         return Promise.resolve(event);
@@ -62,12 +66,14 @@ let exportedMethods = {
     getEventsForAttendee: (attendeeId) => {
         if (attendeeId === undefined) return Promise.reject("No attendee id provided");
 
-        return Promise.resolve(eventList.filter(x => x.attendees.indexOf(attendeeId) >= 0));
+        let clone = JSON.parse(JSON.stringify(eventList));
+        return Promise.resolve(clone.filter(x => x.attendees.indexOf(attendeeId) >= 0));
     },
     getEventsForLocation: (locationId) => {
         if (locationId === undefined) return Promise.reject("No location id provided");
 
-        return Promise.resolve(eventList.filter(x => x.location == locationId));
+        let clone = JSON.parse(JSON.stringify(eventList));
+        return Promise.resolve(clone.filter(x => x.location == locationId));
     },
 }
 

@@ -1,17 +1,19 @@
-<article class='list'>
-    <header>List of all {{type}}</header>
-    <ul>
-        {{#content}}
-            {{#if title}}
-                <li id='{{../type}}_{{id}}'>
-                    <a href='/{{../type}}/{{id}}' title='{{description}}'>{{title}}</a>
-                </li>
-            {{/if}}
-            {{#if name}}
-                <li id='{{../type}}_{{id}}'>
-                    <a href='/{{../type}}/{{id}}'>{{name}}</a>
+<article class='item_page'>
+    <section class='list'>
+        <header>List of all {{type}}</header>
+        <ul>
+            {{#content}}
+                {{#if title}}
+                    <li id='{{../type}}_{{id}}'>
+                        <a href='/{{../type}}/{{id}}' title='{{description}}'>{{title}}</a>
                     </li>
-            {{/if}}
-        {{/content}}
-    </ul>
+                {{/if}}
+                {{#if name}}
+                    <li id='{{../type}}_{{id}}'>
+                        <a href='/{{../type}}/{{id}}'>{{name}}</a>
+                        </li>
+                {{/if}}
+            {{/content}}
+        </ul>
+    </section>
 </article>

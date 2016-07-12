@@ -27,12 +27,16 @@ let locationList = [
 ];
 
 let exportedMethods = {
-    getAll: () => { return Promise.resolve(locationList.slice(0)); },
+    getAll: () => {
+        let clone = JSON.parse(JSON.stringify(locationList));
+        return Promise.resolve(clone.slice(0));
+    },
     lookup: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
-        let location = locationList.filter(x => x.id == id).shift();
-        if (!location) return Promise.reject(`No location found for id:${id}`)
+        let clone = JSON.parse(JSON.stringify(locationList));
+        let location = clone.filter(x => x.id == id).shift();
+        if (!location) return Promise.reject("No location found")
 
         return Promise.resolve(location);
     }

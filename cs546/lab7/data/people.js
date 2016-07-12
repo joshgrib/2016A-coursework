@@ -26,11 +26,15 @@ const personList = [
 ];
 
 let exportedMethods = {
-    getAll: () => { return Promise.resolve(personList.slice(0)); },
+    getAll: () => {
+        let clone = JSON.parse(JSON.stringify(personList));
+        return Promise.resolve(clone.slice(0));
+    },
     lookup: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
-        let person = personList.filter(x => x.id == id).shift();
+        let clone = JSON.parse(JSON.stringify(personList));
+        let person = clone.filter(x => x.id == id).shift();
         if (!person) return Promise.reject("No person found")
 
         return Promise.resolve(person);
