@@ -62,11 +62,11 @@ p {
 
 :root {
     /*Grey red blue yellows*/
-    --color-1: #666547;
-    --color-2: #fb2e01;
-    --color-3: #6fcb9f;
-    --color-4: #ffe28a;
-    --color-5: #fffeb3;
+    //--color-1: #666547;
+    //--color-2: #fb2e01;
+    //--color-3: #6fcb9f;
+    //--color-4: #ffe28a;
+    //--color-5: #fffeb3;
 
     /*Brown green and greys*/
     //--color-1: #423e28;
@@ -81,6 +81,18 @@ p {
     //--color-3: #deaf2b;
     //--color-4: #505f38;
     //--color-5: #343f28;
+
+    /*Facebook colors*/
+    --color-1: #3b5998;
+    --color-2: #8b9dc3;
+    --color-3: #dfe3ee;
+    --color-4: #f7f7f7;
+    --color-5: #ffffff;
+
+
+
+
+
 }
 
 
