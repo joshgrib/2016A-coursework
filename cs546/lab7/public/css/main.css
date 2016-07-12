@@ -153,10 +153,11 @@ header {
 .list>header {
     font-weight: bold;
     border-bottom: 3px solid var(--color-1);
+    padding: 0 10px;
 }
 
 ul {
-    padding:0;
+    padding:0 15px;
     margin:0;
     list-style-type: none;
 }
@@ -175,4 +176,5 @@ li:nth-of-type(even) {
 
 main, .item_page, .list{
     box-shadow: 2px 2px 5px black;
+    width: 60%;
 }
