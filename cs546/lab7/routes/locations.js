@@ -15,10 +15,9 @@ router.get("/:id", (req, res) => {
             return location_info;
         });
     }).then( (location_info) => {
-        //res.json(location_info);
         res.render("layouts/location", location_info);
     }).catch((e) => {
-        res.render('404', {error: e});
+        res.status(404).render('404', {error: e});
     });
 });
 
@@ -29,7 +28,7 @@ router.get("/", (req, res) => {
     data.locations.getAll().then( (location_list) => {
         res.render("layouts/list", {'content': location_list, 'type':'locations'});
     }).catch( (e) => {
-        res.render('404', {error: e});
+        res.status(404).render('404', {error: e});
     });
 });
 

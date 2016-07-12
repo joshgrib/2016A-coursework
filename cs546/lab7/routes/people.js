@@ -19,10 +19,9 @@ router.get("/:id", (req, res) => {
             return person_info;
         });
     }).then( (person_info) => {
-        //res.json(person_info);
         res.render("layouts/person", person_info);
     }).catch((e) => {
-        res.render('404', {error: e});
+        res.status(404).render('404', {error: e});
     });
 });
 
@@ -33,7 +32,7 @@ router.get("/", (req, res) => {
     data.people.getAll().then( (people_list) => {
         res.render("layouts/list", {'content': people_list, 'type':'people'});
     }).catch( (e) => {
-        res.render('404', {error: e});
+        res.status(404).render('404', {error: e});
     });
 });
 

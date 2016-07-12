@@ -97,11 +97,9 @@ main {
     width: 50vw;
     min-width: 350px;
     padding: 25px;
-    /*box-shadow: 2px 2px 2px black;*/
 }
 
 .item_page {
-    /*box-shadow: 2px 2px 2px black;*/
     background: var(--color-3);
     width: 75%;
     margin:auto;

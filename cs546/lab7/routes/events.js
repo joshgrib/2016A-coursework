@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
         //res.json(event_info);
         res.render("layouts/event", event_info);
     }).catch((e) => {
-        res.render('404', {error: e});
+        res.status(404).render('404', {error: e});
     });
     //res.render("/misc/debug", { debug: true, modelData: { something: "SomeValue" } });
 });
@@ -39,7 +39,7 @@ router.get("/", (req, res) => {
     data.events.getAll().then( (event_list) => {
         res.render("layouts/list", {'content': event_list, 'type':'events'});
     }).catch( (e) => {
-        res.render('404', {error: e});
+        res.status(404).render('404', {error: e});
     });
 });
 

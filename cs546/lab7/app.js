@@ -40,7 +40,7 @@ let hbd_settings = {
             return new Handlebars.SafeString(JSON.stringify(obj));
         },
         niceDate: (date_str) => {
-            //Mon Jul 04 2016 00:00:00 GMT-0400 (EDT)
+            //input=Mon Jul 04 2016 00:00:00 GMT-0400 (EDT)
             let date = new Date(date_str);
             return date.toLocaleDateString();
         }
