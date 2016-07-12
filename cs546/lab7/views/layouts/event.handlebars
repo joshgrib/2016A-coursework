@@ -1,6 +1,7 @@
 <article id='event' class='item_page'>
-    <header>{{title}}</header>
+    <h2 class='header'>{{title}}</h2>
     <section class='details'>
+        <h3 class='header hidden'>Details</h3>
         <p class='description'>{{description}}</p>
         <p class='start_time'>
             <time datetime='{{startTime}}'>
@@ -9,7 +10,7 @@
         </p>
     </section>
     <section class='list'>
-        <header>List of attendees</header>
+        <h3 class='header'>List of attendees</h3>
         <ul>
             {{#attendees}}
                 <li id='person_{{id}}'>

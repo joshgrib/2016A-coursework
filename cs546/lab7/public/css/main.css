@@ -88,11 +88,6 @@ p {
     --color-3: #dfe3ee;
     --color-4: #f7f7f7;
     --color-5: #ffffff;
-
-
-
-
-
 }
 
 
@@ -124,15 +119,19 @@ article>*{
     margin: auto;
 }
 
-article>header{
+article>.header{
     text-align: center
+}
+
+article>.details {
+    text-align: center;
 }
 
 footer>p {
     text-align:center;
 }
 
-.item_page>header {
+.item_page>.header {
     font-size: 1.5em;
 }
 
@@ -146,11 +145,11 @@ footer>p {
     width: 300px;
 }
 
-header {
+.header {
     border-bottom: 0;
 }
 
-.list>header {
+.list>.header {
     font-weight: bold;
     border-bottom: 3px solid var(--color-1);
     padding: 0 10px;
@@ -177,4 +176,12 @@ li:nth-of-type(even) {
 main, .item_page, .list{
     box-shadow: 2px 2px 5px black;
     width: 60%;
+}
+
+.hidden {
+    display: none;
+}
+
+.center{
+    text-align: center;
 }

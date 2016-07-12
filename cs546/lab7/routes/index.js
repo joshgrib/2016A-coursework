@@ -11,7 +11,7 @@ const constructorMethod = (app) => {
 
     app.use("*", (req, res) => {
         // any unmatched routes (ie, pages that do not exist) will hit this catch-all route
-        res.status(404).render('404');
+        res.status(404).render('404', {error: "Requested page not found"});
 
         // You could also do res.status(num).render(template, data)
     })
