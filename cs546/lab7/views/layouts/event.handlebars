@@ -14,12 +14,12 @@
         <ul>
             {{#attendees}}
                 <li id='person_{{id}}'>
-                    <a href='/people/{{id}}'>{{name}}</a>
+                    <a href='{{> path}}/people/{{id}}'>{{name}}</a>
                 </li>
             {{/attendees}}
         </ul>
     </section>
     <footer>
-        <p><a href='/locations/{{location.id}}'>{{location.name}}</a> - {{location.location}}</p>
+        <p><a href='{{> path}}/locations/{{location.id}}'>{{location.name}}</a> - {{location.location}}</p>
     </footer>
 </article>

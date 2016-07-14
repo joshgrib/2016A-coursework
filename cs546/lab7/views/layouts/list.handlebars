@@ -6,12 +6,12 @@
             {{#content}}
                 {{#if title}}
                     <li id='{{../type}}_{{id}}'>
-                        <a href='/{{../type}}/{{id}}' title='{{description}}'>{{title}}</a>
+                        <a href='{{> path}}/{{../type}}/{{id}}' title='{{description}}'>{{title}}</a>
                     </li>
                 {{/if}}
                 {{#if name}}
                     <li id='{{../type}}_{{id}}'>
-                        <a href='/{{../type}}/{{id}}'>{{name}}</a>
+                        <a href='{{> path}}/{{../type}}/{{id}}'>{{name}}</a>
                     </li>
                 {{/if}}
             {{/content}}

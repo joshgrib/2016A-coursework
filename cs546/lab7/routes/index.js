@@ -4,10 +4,16 @@ const locationRoutes = require("./locations");
 
 const path = require('path');
 
+const settings = require('../settings');
+
+let peoplePath = settings.path + '/people';
+let eventsPath = settings.path + '/events';
+let locationsPath = settings.path + '/locations';
+
 const constructorMethod = (app) => {
-    app.use("/app1/people", peopleRoutes);
-    app.use("/app1/events", eventRoutes);
-    app.use("/app1/locations", locationRoutes);
+    app.use(peoplePath, peopleRoutes);
+    app.use(eventsPath, eventRoutes);
+    app.use(locationsPath, locationRoutes);
 
     app.use("*", (req, res) => {
         // any unmatched routes (ie, pages that do not exist) will hit this catch-all route
