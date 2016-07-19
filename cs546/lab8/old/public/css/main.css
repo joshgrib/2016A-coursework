@@ -1,0 +1,187 @@
+body {
+    background: #FEFEFE;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 15pt;
+}
+
+main {
+    max-width: 75%;
+    margin: auto;
+}
+
+header {
+    border-bottom: 1px solid #AFAFAF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.15rem;
+}
+
+h6 {
+    font-size: 1.05rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 2;
+}
+
+.post {
+    width: 75%;
+    border-bottom: 1px dashed #333;
+}
+
+
+
+
+/*Stuff I added below*/
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    /*Grey red blue yellows*/
+    //--color-1: #666547;
+    //--color-2: #fb2e01;
+    //--color-3: #6fcb9f;
+    //--color-4: #ffe28a;
+    //--color-5: #fffeb3;
+
+    /*Brown green and greys*/
+    //--color-1: #423e28;
+    //--color-2: #dec388;
+    //--color-3: #cccccc;
+    //--color-4: #bbbbbb;
+    //--color-5: #aaaaaa;
+
+    /*Grey blue yellow green*/
+    //--color-1: #eeeeee;
+    //--color-2: #4a6470;
+    //--color-3: #deaf2b;
+    //--color-4: #505f38;
+    //--color-5: #343f28;
+
+    /*Facebook colors*/
+    --color-1: #3b5998;
+    --color-2: #8b9dc3;
+    --color-3: #dfe3ee;
+    --color-4: #f7f7f7;
+    --color-5: #ffffff;
+}
+
+
+p {
+    margin: 0;
+}
+
+body {
+    background-color: var(--color-1);
+}
+
+main {
+    background-color: var(--color-2);
+    width: 50vw;
+    min-width: 350px;
+    padding: 25px;
+}
+
+.item_page {
+    background: var(--color-3);
+    width: 75%;
+    margin:auto;
+    min-width: 350px;
+    padding: 10px 0;
+}
+
+article>*{
+    width: 300px;
+    margin: auto;
+}
+
+article>.header{
+    text-align: center
+}
+
+article>.details {
+    text-align: center;
+}
+
+footer>p {
+    text-align:center;
+}
+
+.item_page>.header {
+    font-size: 1.5em;
+}
+
+.details>.description{
+    font-style: italic;
+    line-height:100%;
+}
+
+.list {
+    background: var(--color-4);
+    width: 300px;
+}
+
+.header {
+    border-bottom: 0;
+}
+
+.list>.header {
+    font-weight: bold;
+    border-bottom: 3px solid var(--color-1);
+    padding: 0 10px;
+}
+
+ul {
+    padding:0 15px;
+    margin:0;
+    list-style-type: none;
+}
+
+li:nth-of-type(even) {
+    background-color: var(--color-5);
+    width:100%;
+}
+
+.err_msg {
+    background: var(--color-4);
+    color:red;
+    box-shadow: 2px 2px 5px black;
+    padding-left: 15px;
+}
+
+main, .item_page, .list{
+    box-shadow: 2px 2px 5px black;
+    width: 60%;
+}
+
+.hidden {
+    display: none;
+}
+
+.center{
+    text-align: center;
+}

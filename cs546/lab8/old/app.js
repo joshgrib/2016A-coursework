@@ -28,7 +28,9 @@ const handlebarsInstance = exphbs.create({
 */
 
 app.use("/public", static);
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //app.engine('handlebars', handlebarsInstance.engine);
 let hbd_settings = {

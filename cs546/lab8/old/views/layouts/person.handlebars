@@ -1,0 +1,13 @@
+<article id='person' class='item_page'>
+    <h2 class='header'>{{name}}</h2>
+    <section class='list'>
+        <h3 class='header'>List of events</h3>
+        <ul>
+            {{#events}}
+                <li id='event_{{id}}'>
+                    <a href='{{> path}}/events/{{id}}' title='{{description}}'>{{title}}</a>
+                </li>
+            {{/events}}
+        </ul>
+    </section>
+</article>

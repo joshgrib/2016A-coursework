@@ -1,0 +1,26 @@
+{
+  "name": "lab_7",
+  "version": "1.0.0",
+  "description": "LAb 7 - CS546",
+  "main": "app.js",
+  "scripts": {
+    "seed": "node ./tasks/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshgrib/2016A-coursework.git"
+  },
+  "author": "Josh Gribbon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshgrib/2016A-coursework/issues"
+  },
+  "homepage": "https://github.com/joshgrib/2016A-coursework#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0"
+  }
+}

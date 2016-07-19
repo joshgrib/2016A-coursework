@@ -31,11 +31,11 @@ router.post("/", (req, res) => {
     let newRecipeData = req.body;
 
     recipeData.addRecipe(newRecipeData.title, newRecipeData.ingredients, newRecipeData.steps)
-        .then((newRecipe) => {
-            res.json(newRecipe);
-        }).catch((e) => {
-            res.status(500).json({ error: e });
-        });
+    .then((newRecipe) => {
+        res.json(newRecipe);
+    }).catch((e) => {
+        res.status(500).json({ error: e });
+    });
 });
 
 router.put("/:id", (req, res) => {

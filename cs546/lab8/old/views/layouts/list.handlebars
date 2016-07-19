@@ -1,0 +1,21 @@
+<article class='item_page'>
+    <h2 class='hidden'>List of items</h2>
+    <section class='list'>
+        <h3 class='header'>List of all {{type}}</h3>
+        <ul>
+            {{#content}}
+                {{#if title}}
+                    <li id='{{../type}}_{{id}}'>
+                        <a href='{{> path}}/{{../type}}/{{id}}' title='{{description}}'>{{title}}</a>
+                    </li>
+                {{/if}}
+                {{#if name}}
+                    <li id='{{../type}}_{{id}}'>
+                        <a href='{{> path}}/{{../type}}/{{id}}'>{{name}}</a>
+                    </li>
+                {{/if}}
+            {{/content}}
+        </ul>
+    </section>
+</article>
+{{body}}
