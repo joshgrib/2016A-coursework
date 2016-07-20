@@ -1,15 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
-const insertWords = data.insertWords;
 
 router.get("/serverform", (req, res) => {
-    res.render('textManip/form', {clientForm: false});
+    res.render('textManip/form');
 });
 
 router.post('/serverform', (req, res) => {
-    console.log(req);
-    res.render('textManip/form', {clientForm: false});
+    let source_text = String(req.body.source_text);
+    let input_string = String(req.body.input_string);
+    let iterations = Number(req.body.iterations);
+    let gap = Number(req.body.gap);
+    let resp = data.textManip.insertWords(
+        source_text,
+        input_string,
+        iterations,
+        gap);
+    let formData = {source_text: source_text, input_string: input_string, iterations: iterations, gap: gap}
+    resp.then( (result) => {
+        res.render('textManip/form', {result: result, formData: formData});
+    }).catch( (e) => {
+        res.status(500).render('textManip/form', {error: e, formData: formData});
+    });
 });
 
 router.get("/clientform", (req, res) => {
@@ -17,41 +29,3 @@ router.get("/clientform", (req, res) => {
 });
 
 module.exports = router;
-
-
-/*
-router.get("/static", (req, res) => {
-    res.render("calculator/static", {});
-});
-router.get("/server", (req, res) => {
-    res.render("calculator/server", {});
-});
-router.post("/server", (req, res) => {
-    let operation = (req.body.operation || "add").toLowerCase();
-    let firstNumber = parseInt(req.body.number1);
-    let secondNumber = parseInt(req.body.number2);
-    let result;
-    try {
-        switch (operation) {
-            case "add":
-                result = calculator.add(firstNumber, secondNumber);
-                break;
-            case "subtract":
-                result = calculator.subtract(firstNumber, secondNumber);
-                break;
-            case "multiply":
-                result = calculator.multiply(firstNumber, secondNumber);
-                break;
-            case "divide":
-                result = calculator.divide(firstNumber, secondNumber);
-                break;
-            default:
-                throw "Operation not supported"
-        }
-    } catch (e) {
-        res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, operation: operation, error: e });
-        return;
-    }
-    res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, operation: operation, result: result });
-});
-*/

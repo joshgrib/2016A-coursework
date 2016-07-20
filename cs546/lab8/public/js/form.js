@@ -1,5 +1,17 @@
-(function () {
+let processForm = () => {
     let text_manip = (text, string, iterations, gap) => {
+        if(text.length === 0){
+            throw "Source text not present"
+        }
+        if(string.length === 0){
+            throw "Text to insert not present"
+        }
+        if(iterations > 25 || iterations < 1){
+            throw "Iterations not in range (1-25)"
+        }
+        if(gap > 25 || gap < 1){
+            throw "Gap not in range (1-25)"
+        }
         let insertCount = 0;
         let resp = '';
         let lastStop = 0;
@@ -32,10 +44,10 @@
         let gap        = Number(document.getElementById("gap").value);
 
         var errorContainer   = document.getElementById("error-container");
-        var errorTextElement = document.getElementsById("error-text");
+        var errorTextElement = document.getElementById("error-text");
 
         var resultContainer   = document.getElementById("result-container");
-        var resultTextElement = document.getElementsById("result-text")
+        var resultTextElement = document.getElementById("result-text")
 
         // We can take advantage of functional scoping; our event listener has access to its outer functional scope
         // This means that these variables are accessible in our callback
@@ -49,7 +61,9 @@
                 resultContainer.classList.add("hidden");
 
                 var result = text_manip(text, string, iterations, gap);
-                resultTextElement.textContent = "The result is " + result;
+                console.log("RESULT:");
+                console.log(result);
+                resultTextElement.textContent = "The result is: " + result;
                 resultContainer.classList.remove("hidden");
             } catch (e) {
                 var message = typeof e === "string" ? e : e.message;
@@ -58,4 +72,4 @@
             }
         });
     }
-})();
+}

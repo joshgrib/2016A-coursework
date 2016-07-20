@@ -6,19 +6,19 @@
       </header>
       <div class="form-group">
         <label for="source_text">Text snippet</label>
-        <input type="textarea" class="form-control" id="source_text" name="source_text" rows="10" placeholder="Blah blah blah I'm some text" pattern="^.{1,}$" title="Please enter something." required="" value="{{source_text}}">
+        <input type="text" class="form-control" id="source_text" name="source_text" placeholder="Blah blah blah I'm some text" pattern="^.{1,}$" title="Please enter something." required="" value="{{formData.source_text}}">
       </div>
       <div class="form-group">
         <label for="input_string">Stuff to insert</label>
-        <input type="text" class="form-control" id="input_string" name="input_string" size="10" placeholder="[:D]" pattern="^.{1,}$" title="Please enter something." required="" value="{{input_string}}">
+        <input type="text" class="form-control" id="input_string" name="input_string" placeholder="[:D]" pattern="^.{1,}$" title="Please enter something." required="" value="{{formData.input_string}}">
       </div>
       <div class="form-group">
-        <label for="number1">Number of inserts</label>
-        <input type="number" class="form-control" name="iterations" id="iterations" class="small_form_text" placeholder="5" pattern="^0{0,}([1-9]|10)$" title="Please enter a positive whole number 0-10." required="" value="{{iterations}}">
+        <label for="iterations">Number of inserts</label>
+        <input type="number" class="form-control small_form_text" name="iterations" id="iterations" placeholder="5" title="Please enter a whole number 1-25" required="" value="{{formData.iterations}}">
       </div>
       <div class="form-group">
-        <label for="number2">Gap between inserts</label>
-        <input type="number" class="form-control" name="gap" id="gap"placeholder="3" pattern="^0{0,}(1{0,1}[0-9]{1}|20)$" title="Please enter a whole number between 0 and 20" required="" value="{{secondNumber}}">
+        <label for="gap">Gap between inserts</label>
+        <input type="number" class="form-control" name="gap" id="gap" placeholder="3" title="Please enter a whole number 1-25" required="" value="{{formData.gap}}">
       </div>
 
       {{#if clientForm}}
@@ -26,15 +26,17 @@
         <div class="alert alert-danger text-goes-here" id="error-text"></div>
       </div>
       {{^}}
-      <div class="form-group">
-        <div class="alert alert-danger">
-          {{ error }}
-        </div>
-      </div>
+        {{#if error}}
+          <div class="form-group">
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          </div>
+        {{/if}}
       {{/if}}
 
       <div class="form-group">
-        <button type="submit" class="btn btn-default">DO IT!</button>
+        <button type="submit" class="btn btn-default" {{#if clientForm}}onclick="processForm();"{{/if}}>DO IT!</button>
       </div>
 
       {{#if clientForm}}
@@ -42,11 +44,13 @@
         <div class="alert alert-success text-goes-here" id="result-text"></div>
       </div>
       {{^}}
-      <div class="form-group">
-        <div class="alert alert-success">
-          The result is: {{ result }}
-        </div>
-      </div>
+        {{#if result}}
+          <div class="form-group">
+            <div class="alert alert-success">
+              The result is: {{ result }}
+            </div>
+          </div>
+        {{/if}}
       {{/if}}
 
     </form>
