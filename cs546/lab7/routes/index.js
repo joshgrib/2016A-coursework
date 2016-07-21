@@ -4,18 +4,12 @@ const locationRoutes = require("./locations");
 
 const path = require('path');
 
-const settings = require('../settings');
-
-let peoplePath = settings.path + '/people';
-let eventsPath = settings.path + '/events';
-let locationsPath = settings.path + '/locations';
-
 const constructorMethod = (app) => {
-    app.use(peoplePath, peopleRoutes);
-    app.use(eventsPath, eventRoutes);
-    app.use(locationsPath, locationRoutes);
+    app.use('/people', peopleRoutes);
+    app.use('/events', eventRoutes);
+    app.use('/locations', locationRoutes);
 
-    app.use(settings.path+'/style', (req, res) => {
+    app.use('/style', (req, res) => {
         //send the css
         res.sendFile('main.css', { root: path.join(__dirname, '../public/css') })
     });
