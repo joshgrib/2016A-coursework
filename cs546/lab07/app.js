@@ -9,8 +9,6 @@ const exphbs = require('express-handlebars');
 
 const Handlebars = require('handlebars');
 
-const settings = require('./settings');
-
 /*
 const handlebarsInstance = exphbs.create({
     defaultLayout: 'main',
@@ -51,9 +49,6 @@ let hbd_settings = {
 };
 app.engine('handlebars', exphbs(hbd_settings));
 app.set('view engine', 'handlebars');
-
-//sets a path from the root of the server for links and routing
-Handlebars.registerPartial('path', settings.path);
 
 configRoutes(app);
 
