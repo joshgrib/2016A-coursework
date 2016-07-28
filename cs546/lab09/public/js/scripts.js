@@ -25,7 +25,7 @@
             $( "#intervals-counter" ).text(0);
             localStorage['loc-hash'] = location.hash;
         }
-        $( "#form-subissions-count" ).text(localStorage['form-subs']);
+        $( "#form-submissions-count" ).text(localStorage['form-subs']);
         $( "#last-input-value" ).text(localStorage['last-input']);
         localStorage['loc-hash'] = location.hash;
         $( "#loc-hash" ).text(localStorage['loc-hash']);
@@ -117,6 +117,10 @@
      */
     $( "#clear-storage" ).click( (event) => {
         localStorage.clear();
+        $('#intervals-counter').text('Not set yet');
+        $('#form-submissions-count').text('Not set yet');
+        $('#last-input-value').text('Not set yet');
+        $('#loc-hash').text('Not set yet');
         updateTable(true);
     });
 
