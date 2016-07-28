@@ -1,10 +1,10 @@
 const textManipRoutes = require("./textManip");
 
 const constructorMethod = (app) => {
-    app.use("/textManip", textManipRoutes);
+    app.use("/", textManipRoutes);
 
     app.use("*", (req, res) => {
-        res.redirect("/textManip/clientform");
+        res.redirect("/clientform");
     })
 };
 

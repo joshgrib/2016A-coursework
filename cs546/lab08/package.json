@@ -1,21 +1,20 @@
 {
-  "name": "lecture_9",
+  "name": "lab8",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lab to learn forms and practice JS on the client and server side",
   "main": "app.js",
   "scripts": {
     "seed": "node ./tasks/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "",
+  "author": "Josh Gribbon",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
-    "handlebars": "^4.0.5",
-    "mongodb": "^2.1.18",
-    "node-uuid": "^1.4.7"
-  }
+    "handlebars": "^4.0.5"
+  },
+  "devDependencies": {}
 }
