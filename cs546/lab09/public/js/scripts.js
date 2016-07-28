@@ -57,12 +57,17 @@
      *  Full interval count since first page load stored in localStorage
      *  Interval since "this" page load calculated and displayed
      */
-    if(!localStorage['intervals']){localStorage['intervals'] = 0;}
-    let itersOnLoad = Number(localStorage['intervals']);
+    let itersOnLoad = 0;
+    if(localStorage['intervals']){
+        iterOnLoad =  Number(localStorage['intervals']);
+    }
     let intervalId = window.setInterval(function () {
+        if(!localStorage['intervals']){localStorage['intervals'] = 0;}
         let iteration = Number(localStorage['intervals']);
+        console.log(iteration);
         localStorage['intervals'] = iteration + 1;
-        $( "#intervals-counter" ).text(iteration-itersOnLoad);
+        $( "#intervals-counter" ).text(localStorage['intervals']-itersOnLoad);
+        updateTable();
     }, 1500);
 
 
@@ -112,8 +117,9 @@
      */
     $( "#clear-storage" ).click( (event) => {
         localStorage.clear();
-        updateTable(false);
+        updateTable(true);
     });
+
 
     /*
      *  Add a hash to url
@@ -123,6 +129,10 @@
         updateTable(false)
     });
 
+
+    /*
+     *  Remove the hash
+     */
     $( "#remove-hash" ).click( (event) => {
         location.hash = "";
         updateTable(false);
